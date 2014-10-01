@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+
+<html>
+
+  <!-- Allison Moshier
+       Introduction to Programming
+       October 1st, 2014
+       Project 2 - Beyoncé Game, Part 1-->
+
+  <head>
+     <title>
+            Beyoncé 4.0
+     </title>
+     <style>
+        .class{font-family:georgia;}
+        .fancy{font-style:italic;}
+     </style>
+     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+     <meta name="author"             content="Allison Moshier" />
+     <script type="text/javascript">
+
+         var score = 5
+         var currentlocation = 0
+
+         var visited0 = true;
+         var visited1 = false;
+         var visited2 = false;
+         var visited3 = false;
+         var visited4 = false;
+
+         function totalScore() {
+            var targetScoreBox = document.getElementById("taScore");
+            targetScoreBox.value = score;
+         }
+
+         function goUp() {
+            if(currentlocation === 0) {
+               currentlocation = 1;
+               displaymessage("The screaming gets louder. \n");
+               if(visited1=== false) {
+                 visited1 = true;
+                 score += 5;
+                 totalScore();
+               }
+            } else {
+               if (currentlocation === 4) {
+                  currentlocation = 0;
+                  displaymessage("You are standing on Stage in Paris with over 75,000 fans screaming your name. \n");
+                  if(visited0=== false) {
+                    visited0 = true;
+                    score += 5;
+                    totalScore();
+                  }
+               } else {
+                 displaymessage("Try Again. \n");
+               }
+            }
+          }
+         function goDown() {
+            if(currentlocation === 1) {
+               currentlocation = 0;
+               displaymessage("You are standing on Stage in Paris with over 75,000 fans screaming your name. \n");
+               if(visited0=== false) {
+                 visited0 = true;
+                 score += 5;
+                 totalScore();
+               }
+            } else {
+               if (currentlocation === 0) {
+                  currentlocation = 4;
+                  displaymessage("Fans start to cry. Oh no! \n");
+                  if(visited4=== false) {
+                    visited4 = true;
+                    score += 5;
+                    totalScore();
+                  }
+               } else {
+                displaymessage("Try Again. \n");
+               }
+            }
+          }
+         function goLeft() {
+            if(currentlocation === 3) {
+               currentlocation = 0;
+               displaymessage("You are standing on Stage in Paris with over 75,000 fans screaming your name. \n");
+               if(visited0=== false) {
+                 visited0 = true;
+                 score += 5;
+                 totalScore();
+               }
+            } else {
+               if (currentlocation === 0) {
+                  currentlocation = 2;
+                  displaymessage("You start and finish your first song. \n");
+                  if(visited2=== false) {
+                    visited2 = true;
+                    score += 5;
+                    totalScore();
+                  }
+               } else {
+                displaymessage("Try Again. \n");
+               }
+            }
+          }
+         function goRight() {
+            if(currentlocation === 2) {
+               currentlocation = 0;
+               displaymessage("You are standing on Stage in Paris with over 75,000 fans screaming your name. \n");
+               if(visited0=== false) {
+                 visited0 = true;
+                 score += 5;
+                 totalScore();
+               }
+            } else {
+               if (currentlocation === 0) {
+                  currentlocation = 3;
+                  displaymessage("You perform another song. \n");
+                  if(visited3=== false) {
+                     visited3 = true;
+                     score += 5;
+                     totalScore();
+                  }
+               } else {
+                displaymessage("Try Again. \n");
+               }
+            }
+          }
+
+         function displaymessage (message) {
+           var target = document.getElementById("taAnswer");
+           target.value += message + "\n";
+         }
+
+      </script>
+  </head>
+
+  <body>
+       <h1 class="class">Beyoncé 4.0</h1>
+       <p class="fancy">If you liked it, you should of put a ring on it. Now find the ring, go!</p>
+       <br>
+       Score:
+       <textarea rows="2" cols="5" id="taScore">5</textarea>
+       <br>
+       <br>
+       <textarea rows="10" cols="40" id="taAnswer">You are standing on Stage in Paris
+with over 75,000 fans screaming your name.
+       </textarea>
+       <br>
+       <input type="button"
+              value="Up"
+              onclick="goUp();" />
+       <input type="button"
+              value="Down"
+              onclick="goDown();" />
+       <input type="button"
+              value="To the Left, to the Left"
+              onclick="goLeft();" />
+       <input type="button"
+              value="Right"
+              onclick="goRight();" />
+       <br>
+       <p>
+          <!-- http://www.w3schools.com/html/tryit.asp?filename=tryhtml_mailto -->
+          If Problems Occur on Stage:
+          <a href="mailto:Allison.Moshier1@marist.edu?Subject=Hello%20again" target="_top">
+            Send An Email Here.
+          </a>
+          <!-- http://validator.w3.org/check -->
+      </p>
+   </body>
+
+</html>
