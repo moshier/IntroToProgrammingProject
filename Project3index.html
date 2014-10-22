@@ -1,0 +1,269 @@
+<!DOCTYPE HTML>
+
+<html>
+
+  <!-- Allison Moshier
+       Introduction to Programming
+       October 19th, 2014
+       Project 3 - Beyoncé Game, Part 1-->
+
+  <head>
+     <title>
+            Beyoncé 4.0
+     </title>
+     <style>
+        .beyonce{font-family:georgia;}
+        .fancy{font-style:italic;}
+     </style>
+     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+     <meta name="author"             content="Allison Moshier" />
+     <script type="text/javascript">
+
+         var score = 5
+         var currentLoc = 0
+
+         var visited0 = true;
+         var visited1 = false;
+         var visited2 = false;
+         var visited3 = false;
+         var visited4 = false;
+         var visited5 = false;
+
+         function init() {
+            look();
+         }
+
+         function showScore() {
+            var targetScoreBox = document.getElementById("taScore");
+            targetScoreBox.value = score;
+         }
+
+         function btnGo_click() {
+            var userQuestion = document.getElementById("txtCommand").value;
+            userQuestion = userQuestion.toUpperCase();
+            switch(userQuestion){
+            case 'UP':
+            	goUp();
+            	break;
+        	case 'DOWN':
+        		goDown();
+        		break;
+        	case 'UNDER':
+        		goUnder();
+        		break;
+        	case 'TO THE LEFT, TO THE LEFT':
+        		goLeft();
+        		break;
+        	case 'RIGHT':
+        		goRight();
+        		break;
+        	case 'HELP':
+        		displayMessage("Valid commands:\nUp\nDown\nUnder\nTo the left, to the left\nRight\nHelp");
+        		break;
+        	default:
+        		displayMessage("That is not a valid command. Type help for a list of commands!");
+            }
+         }
+
+         function goUp() {
+         	switch(currentLoc) {
+           	 case 0:
+          	  currentLoc = 1;
+          	  look();
+               if(visited1=== false) {
+                 visited1 = true;
+                 score += 5;
+                 showScore();
+               }
+               break;
+              case 4:
+            	currentLoc = 0;
+            	look();
+                 if(visited0=== false) {
+                    visited0 = true;
+                    score += 5;
+                    showScore();
+                 }
+                 break;
+               case 5:
+                 currentLoc = 0;
+                 look();
+                  if(visited0=== false) {
+                     visited0 = true;
+                     score += 5;
+                     showScore();
+                  }
+                  break;
+        	   default:
+        		  errorMsg();
+               }
+         }
+
+         function goDown() {
+            switch(currentLoc) {
+              case 1:
+                currentLoc = 0;
+                look();
+                if(visited0=== false) {
+                  visited0 = true;
+                  score += 5;
+                  showScore();
+                }
+                break;
+              case 0:
+                currentLoc = 4;
+                look();
+                 if(visited4=== false) {
+                    visited4 = true;
+                    score += 5;
+                    showScore();
+                 }
+                 break;
+              default:
+                 errorMsg();
+              }
+         }
+
+         function goUnder() {
+            switch(currentLoc) {
+              case 0:
+                currentLoc = 5;
+                look();
+                 if(visited5=== false) {
+                  visited5 = true;
+                  score += 5;
+                  showScore();
+                 }
+                 break;
+                default:
+                   errorMsg();
+              }
+         }
+
+         function goLeft() {
+            switch(currentLoc) {
+              case 3:
+               currentLoc = 0;
+               look();
+                if(visited0=== false) {
+                  visited0 = true;
+                  score += 5;
+                  showScore();
+                }
+               break;
+              case 0:
+                 currentLoc = 2;
+                 look();
+                 if(visited2=== false) {
+                    visited2 = true;
+                    score += 5;
+                    showScore();
+                 }
+                 break;
+              default:
+                 errorMsg();
+              }
+         }
+
+         function goRight() {
+           switch(currentLoc) {
+            case 2:
+               currentLoc = 0;
+               look();
+               if(visited0=== false) {
+                 visited0 = true;
+                 score += 5;
+                 showScore();
+               }
+               break;
+              case 0:
+                 currentLoc = 3;
+                 look();
+                 if(visited3=== false) {
+                     visited3 = true;
+                     score += 5;
+                     showScore();
+                 }
+                 break;
+              default:
+                 errorMsg();
+              }
+         }
+
+        function displayMessage(msg) {
+           var target = document.getElementById("taAnswer");
+           target.value = msg + "\n\n" + target.value;
+         }
+
+         function look() {
+            var msg = "";
+            switch(currentLoc) {
+               case 0: msg = "0. You are standing on Stage in Paris with over 75,000 fans screaming your name.";
+                       break;
+               case 1: msg = "1. The screaming gets louder.";
+                       break;
+               case 2: msg = "2. You start and finish your first song.";
+                       break;
+               case 3: msg = "3. You perform another song.";
+                       break;
+               case 4: msg = "4. Fans start to cry. Oh no!";
+                       break;
+               case 5: msg = "5. Costume change!";
+                       break;
+            }
+            displayMessage(msg);
+         }
+
+         function errorMsg(){
+         	displayMessage("Try Again.");
+         }
+      </script>
+  </head>
+
+  <body onload="init();">
+       <h1 class="beyonce">Beyoncé 4.0</h1>
+       <p class="fancy">If you liked it, you should of put a ring on it. Now find the ring, go!</p>
+       <br>
+       Score:
+       <textarea rows="2" cols="5" id="taScore">5</textarea>
+       <br>
+       <br>
+       <textarea rows="10" cols="40" id="taAnswer"></textarea>
+       <br>
+       Command:
+       <input type="text"
+              id = "txtCommand"
+              name="txtCommand">
+
+       <input type="button"
+              value="Go"
+              onclick="btnGo_click();" />
+       <br>
+       <input type="button"
+              value="Up"
+              onclick="goUp();" />
+       <input type="button"
+              value="Down"
+              onclick="goDown();" />
+       <input type="button"
+              value="Under"
+              onclick="goUnder();" />
+       <input type="button"
+              value="To the Left, to the Left"
+              onclick="goLeft();" />
+       <input type="button"
+              value="Right"
+              onclick="goRight();" />
+       <br>
+       <p>
+          <!-- http://www.w3schools.com/html/tryit.asp?filename=tryhtml_mailto -->
+          If Problems Occur on Stage:
+          <a href="mailto:Allison.Moshier1@marist.edu?Subject=Hello%20again" target="_top">
+            Send An Email Here.
+          </a>
+          <!-- http://validator.w3.org/check -->
+          <!-- http://jigsaw.w3.org/css-validator/validator -->
+      </p>
+   </body>
+
+</html>
